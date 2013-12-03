@@ -3,29 +3,34 @@ class flights_controller extends base_controller {
 
     public function __construct() {
         parent::__construct();
+
+        # Make sure user is logged in if they want to use anything in this controller
+        if(!$this->user) {
+            Router::redirect("/users/login");
+        }
     } 
 
     public function index() {
-        
-        //getting deal list from kayak's rss feed
+
+        # Setup view
+        $this->template->content = View::instance('v_flights_index');
+        $this->template->title   = "Deals";
+
+        # Get deal list from kayak.com's rss feed
         $results = Utils::curl('http://www.kayak.com/h/rss/buzz?code=BOS');
         
-        //putting deal list results into array
+        # Put results into array
         $results = Utils::xml_to_array($results);
 
-        //getting results and displaying them
+        # Get deal list from results
         $items = $results['channel']['item'];
-        foreach($items as $deal) {
-            echo $deal['title']."<br>";
-            echo $deal['link']."<br><br>";
-        }
+        //echo var_dump($items);
 
-        //how to get at namespace data?
-        //http://www.sitepoint.com/simplexml-and-namespaces/
-        //http://stackoverflow.com/questions/1186107/simple-xml-dealing-with-colons-in-nodes
-        //http://www.sitepoint.com/parsing-xml-with-simplexml/
+        # Pass data to the view
+        $this->template->content->items = $items;
 
-        //echo Debug::dump($items,"Results");
+        # Render the view
+        echo $this->template;
     }
 
 } # end of the class

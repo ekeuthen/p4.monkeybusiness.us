@@ -38,3 +38,34 @@ a:hover, a:active {
 #right {
 	text-align: right;
 }
+
+.ui-helper-hidden-accessible {
+	display: none;
+}
+
+.ui-menu-item {
+	display: block;
+	background-color: white;
+	text-align: left;
+	border: blue solid 1px;
+	width: 400px;
+}
+
+.ui-corner-all {
+	color: blue;
+}
+
+.ui-autocomplete {
+	padding: 0px;
+}
+
+td {
+	padding: 5px;
+	text-align: left;
+}
+
+table {
+	text-align: center;
+	width: 80%;
+	margin: auto;
+}

@@ -1,6 +1,6 @@
 <form method='POST' action='/users/p_login'>
 
-    <h3>Please sign in to get your personalized deal list.</h3>
+    <h3>Please log in to get your personalized deal list.</h3>
 
     Email<br>
     <input type='text' name='email'>    

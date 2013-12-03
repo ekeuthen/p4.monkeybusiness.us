@@ -120,6 +120,47 @@ class users_controller extends base_controller {
         }
     }
 
+    public function preferences() {
+
+        # If user is blank, they're not logged in; redirect them to the login page
+        if(!$this->user) {
+            Router::redirect('/users/login');
+        }
+
+        # If they weren't redirected away, continue:
+
+        # Set up the view
+        $this->template->content = View::instance("v_users_preferences");
+        $this->template->title   = "Preferences";
+
+        # Query
+        $q = 'SELECT * FROM preferences WHERE preferences.user_id = '.$this->user->user_id;
+
+        # Run the query, store the results in the variable $posts
+        $preferenceList = DB::instance(DB_NAME)->select_rows($q);
+
+        # Pass data to the view
+        $this->template->content->preferences = $preferenceList;
+
+        # Render the view
+        echo $this->template;
+    }
+
+    public function p_preferences() {
+
+        # More data we want stored with the user
+        $_POST['created']  = Time::now();
+        $_POST['modified'] = Time::now();
+        $_POST['user_id'] = $this->user->user_id;
+
+        # Insert this user into the database 
+        $user_id = DB::instance(DB_NAME)->insert("preferences", $_POST);
+
+        # Send them back to preferences.
+        Router::redirect("/users/preferences");
+
+    }
+
     public function logout() {
 
         # Generate and save a new token for next login
@@ -139,5 +180,6 @@ class users_controller extends base_controller {
         Router::redirect("/");
 
     }
+
 
 } # end of the class

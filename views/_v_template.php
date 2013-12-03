@@ -9,6 +9,9 @@
 
     <!-- Common CSS/JSS -->
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/js/flymeaway.js"></script>
     
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
