@@ -1,7 +1,7 @@
 <h1>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name; ?>!</h1>
 
-<h3>Find the best flight deals in two easy steps:</h3>
-<h5>1) Select your home airport and other preferences.</h5>
+<h3>Find the best flight deals for YOU in two easy steps:</h3>
+<h5>1) Tell us about your trip ideas (& hopes & dreams).</h5>
 <h5>2) View the deals!</h5>
 
 <img id="bird" src="/uploads/bird.jpg" alt="bird image" height="263" width="245">

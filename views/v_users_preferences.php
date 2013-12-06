@@ -1,8 +1,8 @@
-<h2><?php echo $user->first_name; ?>'s Preferences:</h2>
+<h2><?php echo $user->first_name; ?>'s Trip Ideas</h2>
 
 <form method='POST' action='/users/p_preferences'>
 
-    <h3>Create a new preference:</h3>
+    <h3>Create a new trip idea:</h3>
 
     <table>
         <tr>
@@ -14,7 +14,7 @@
         <tr>
             <td>Travel Month:</td>
             <td><select name="month">
-                <option value="00"></option>
+                <option value=""></option>
                 <option value="01">January</option>
                 <option value="02">February</option>
                 <option value="03">March</option>
@@ -64,7 +64,7 @@
 
 </form>
 
-<h3>Current preferences:</h3>
+<h3>Current trip ideas:</h3>
 
 <table id="preferenceList">
     <tr>
@@ -96,7 +96,11 @@
                 <?php echo date('F d, Y', $preference['created']); ?>
             </td>
             <td>
-                <button>Delete</button>
+                <!--Alllow users to delete a trip idea.-->
+                <form method='POST' action='/users/p_preferences_delete'>
+                    <input type='submit' value='Delete'>
+                    <input type='hidden' name='preference_id' value='<?=$preference['preference_id']?>'>
+                </form>
             </td>
 
         </tr>

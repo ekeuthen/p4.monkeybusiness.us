@@ -11,7 +11,7 @@
     <br><br>
 
     Email<br>
-    <input type='text' name='email' required=''>
+    <input type='email' name='email' required=''>
     <br><br>
 
     Password<br>

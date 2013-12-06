@@ -29,7 +29,7 @@
         <div id='right'><h3>
             <?php if($user): ?>
 
-                <a href='/users/preferences'>Preferences</a>
+                <a href='/users/preferences'>Trip Ideas</a>
                 <a href='/flights/index'>Deals</a>
                 <a href='/users/logout'>Log out</a>
 

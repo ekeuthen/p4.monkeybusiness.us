@@ -136,7 +136,7 @@ class users_controller extends base_controller {
         # Query
         $q = 'SELECT * FROM preferences WHERE preferences.user_id = '.$this->user->user_id;
 
-        # Run the query, store the results in the variable $posts
+        # Run the query, store the results in the variable $preferenceList
         $preferenceList = DB::instance(DB_NAME)->select_rows($q);
 
         # Pass data to the view
@@ -153,12 +153,30 @@ class users_controller extends base_controller {
         $_POST['modified'] = Time::now();
         $_POST['user_id'] = $this->user->user_id;
 
+        if ($_POST['month'] == '') {
+            $_POST['month'] = NULL; 
+            echo 'post month is NULL!';
+        } else {
+            echo 'post month is NOT null!';
+        }
+        echo $_POST['month'];
+
         # Insert this user into the database 
         $user_id = DB::instance(DB_NAME)->insert("preferences", $_POST);
 
         # Send them back to preferences.
-        Router::redirect("/users/preferences");
+        # Router::redirect("/users/preferences");
 
+    }
+
+    public function p_preferences_delete() {
+
+        # Delete trip idea from database
+        $condition = "WHERE preference_id = ".$_POST['preference_id'];
+        DB::instance(DB_NAME)->delete('preferences', $condition);
+
+        # Reload preferences to show that trip idea has been deleted
+        Router::redirect("/users/preferences");
     }
 
     public function logout() {
