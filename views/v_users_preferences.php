@@ -7,12 +7,12 @@
     <table>
         <tr>
             <td>Home Airport:</td>
-            <td><input type="text" name="airport" id="airport" size="20"/></td>
+            <td><input type="text" name="airport" id="airport" size="20" required=''/></td>
         </tr>
 
         <!--what to do about expired preferences?-->
         <tr>
-            <td>Travel Month:</td>
+            <td>Travel Month / Year:</td>
             <td><select name="month">
                 <option value=""></option>
                 <option value="01">January</option>
@@ -27,36 +27,32 @@
                 <option value="10">October</option>
                 <option value="11">November</option>
                 <option value="12">December</option>
-            </select> (optional)</td>
-        </tr>
-
-        <!--remove hard coded year -->
-        <tr>
-            <td>Travel Year:</td>
-            <td><select name="year">
-                <option value="0000"></option>
+            </select>
+            <!--remove hard coded year -->
+            <select name="year">
+                <option value=""></option>
                 <option value="2013">2013</option>
                 <option value="2014">2014</option>
             </select> (optional)</td>
         </tr>
 
         <tr>
-            <td>Region of Interest:</td>
+            <td>Destination of Interest:</td>
             <td><select name="region">
-                <option value="0"></option>
-                <option value="f">Africa</option>
-                <option value="a">Asia</option>
-                <option value="c">Caribbean</option>
-                <option value="m">Central America</option>
-                <option value="e">Europe</option>
-                <option value="u">North America</option>
-                <option value="s">South America</option>
+                <option value=""></option>
+                <option value="Africa">Africa</option>
+                <option value="Asia">Asia</option>
+                <option value="Caribbean">Caribbean</option>
+                <option value="Central America">Central America</option>
+                <option value="Europe">Europe</option>
+                <option value="North America">North America</option>
+                <option value="South America">South America</option>
             </select> (optional)</td>
         </tr>
 
         <tr>
             <td>Maximum Price ($):</td>
-            <td><input type="text" name="max_price" size="10"/> (optional)</td>
+            <td><input type="number" min="0" name="max_price" size="10"/> (optional)</td>
         </tr>
     </table>
 
@@ -68,39 +64,38 @@
 
 <table id="preferenceList">
     <tr>
+        <td>Delete</td>
+        <td>Create Date</td>
         <td>Home Airport</td>
         <td>Travel Dates</td>
-        <td>Region</td>
+        <td>Destination</td>
         <td>Maximum Price ($)</td>
-        <td>Create Date</td>
-        <td>Delete</td>
     <tr>
 
     <?php foreach($preferences as $preference): ?>
 
         <tr>
-
-            <td>
-                <?=$preference['airport']?>
-            </td>
-            <td>
-                <?=$preference['month']."-".$preference['year']?>
-            </td>
-            <td>
-                <?=$preference['region']?>
-            </td>
-            <td>
-                <?=$preference['max_price']?>
-            </td>
-            <td>
-                <?php echo date('F d, Y', $preference['created']); ?>
-            </td>
             <td>
                 <!--Alllow users to delete a trip idea.-->
                 <form method='POST' action='/users/p_preferences_delete'>
                     <input type='submit' value='Delete'>
                     <input type='hidden' name='preference_id' value='<?=$preference['preference_id']?>'>
                 </form>
+            </td>
+            <td>
+                <?php echo date('F d, Y', $preference['created']); ?>
+            </td>
+            <td>
+                <?=$preference['airport']?>
+            </td>
+            <td>
+                <?php if (isset($preference['month'])) echo $preference['month'].'/'.$preference['year'];?>
+            </td>
+            <td>
+                <?=$preference['region']?>
+            </td>
+            <td>
+                <?=$preference['max_price']?>
             </td>
 
         </tr>

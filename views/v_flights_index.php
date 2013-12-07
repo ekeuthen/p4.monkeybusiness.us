@@ -1,4 +1,4 @@
-<h2>Flight Deals!</h2>
+<h2><?php echo $user->first_name; ?>'s Flight Deals</h2>
 <table>
     <?php foreach($items as $item): ?>
 

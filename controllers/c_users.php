@@ -148,24 +148,37 @@ class users_controller extends base_controller {
 
     public function p_preferences() {
 
-        # More data we want stored with the user
+        # Store additional data with the preference
         $_POST['created']  = Time::now();
         $_POST['modified'] = Time::now();
         $_POST['user_id'] = $this->user->user_id;
 
+        # Set empty strings to NULL
         if ($_POST['month'] == '') {
-            $_POST['month'] = NULL; 
-            echo 'post month is NULL!';
-        } else {
-            echo 'post month is NOT null!';
+            $_POST['month'] = 'NULL';
         }
-        echo $_POST['month'];
 
-        # Insert this user into the database 
-        $user_id = DB::instance(DB_NAME)->insert("preferences", $_POST);
+        if ($_POST['year'] == '') {
+            $_POST['year'] = 'NULL';
+        }
 
-        # Send them back to preferences.
-        # Router::redirect("/users/preferences");
+        if ($_POST['region'] == '') {
+            $_POST['region'] = NULL;
+        }
+
+        if ($_POST['max_price'] == '') {
+            $_POST['max_price'] = 'NULL';
+        }
+
+        # Insert this prefrence into the database
+        # (Using SQL instead of core framework's built in functions to allow insertion of NULL values)
+        $sql = 'INSERT INTO preferences (user_id, created, modified, airport, month, year, region, max_price) 
+            VALUES ('.$_POST['user_id'].', '.$_POST['created'].', '.$_POST['modified'].', "'.$_POST['airport'].'", '
+            .$_POST['month'].', '.$_POST['year'].', "'.$_POST['region'].'", '.$_POST['max_price'].')';
+        DB::instance(DB_NAME)->select_rows($sql);
+
+        # Send user back to preferences.
+        Router::redirect("/users/preferences");
 
     }
 
