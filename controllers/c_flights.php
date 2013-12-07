@@ -44,7 +44,7 @@ class flights_controller extends base_controller {
                 $description .= ' during '.$month.'/'.$year;
             }
 
-            if (isset($region)) {
+            if ($region != '') {
                 $description .= ' to somewhere in '.$region;
                 # Convert region names to region codes prior to adding to url string
                 switch ($region) {
@@ -87,12 +87,12 @@ class flights_controller extends base_controller {
             # Put results into array
             $results = Utils::xml_to_array($results);
 
-            # Get deal list from results
-            $item = $results['channel']['item'];
-
-            # Add calculated results to items and descriptions arrays
-            $items[] = $item;
-            $descriptions[] = $description;
+            # Get deal list from results; if list contains values add results to items & description arrays
+            if (isset($results['channel']['item'])) {
+                $item = $results['channel']['item'];
+                $items[] = $item;
+                $descriptions[] = $description;
+            }
 
         }
 

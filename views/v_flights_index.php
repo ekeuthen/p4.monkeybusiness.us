@@ -24,6 +24,8 @@
 
 <?php } ?>
 
+<h5>Don't see a trip idea you were looking for?  Add a new trip idea and try again!</h5>
+
 <!--how to get at namespace data?
 http://www.sitepoint.com/simplexml-and-namespaces/
 http://stackoverflow.com/questions/1186107/simple-xml-dealing-with-colons-in-nodes
