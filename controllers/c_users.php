@@ -155,7 +155,7 @@ class users_controller extends base_controller {
 
         # Set empty strings to NULL
         if ($_POST['month'] == '') {
-            $_POST['month'] = 'NULL';
+            $_POST['month'] = NULL;
         }
 
         if ($_POST['year'] == '') {
@@ -173,8 +173,8 @@ class users_controller extends base_controller {
         # Insert this prefrence into the database
         # (Using SQL instead of core framework's built in functions to allow insertion of NULL values)
         $sql = 'INSERT INTO preferences (user_id, created, modified, airport, month, year, region, max_price) 
-            VALUES ('.$_POST['user_id'].', '.$_POST['created'].', '.$_POST['modified'].', "'.$_POST['airport'].'", '
-            .$_POST['month'].', '.$_POST['year'].', "'.$_POST['region'].'", '.$_POST['max_price'].')';
+            VALUES ('.$_POST['user_id'].', '.$_POST['created'].', '.$_POST['modified'].', "'.$_POST['airport'].'", "'
+            .$_POST['month'].'", '.$_POST['year'].', "'.$_POST['region'].'", '.$_POST['max_price'].')';
         DB::instance(DB_NAME)->select_rows($sql);
 
         # Send user back to preferences.

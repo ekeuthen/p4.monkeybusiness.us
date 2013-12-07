@@ -89,7 +89,7 @@
                 <?=$preference['airport']?>
             </td>
             <td>
-                <?php if (isset($preference['month'])) echo $preference['month'].'/'.$preference['year'];?>
+                <?php if (isset($preference['year'])) echo $preference['month'].'/'.$preference['year'];?>
             </td>
             <td>
                 <?=$preference['region']?>
