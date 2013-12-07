@@ -1,21 +1,28 @@
 <h2><?php echo $user->first_name; ?>'s Flight Deals</h2>
-<table>
-    <?php foreach($items as $item): ?>
 
-        <tr>
+<?php for ($i=0; $i<count($descriptions); $i++) { ?>
 
-            <td>
-                <?=$item['title']?>
-            </td>
+    <h2 id="description"><?php echo $descriptions[$i]; ?></h2>
 
-            <td>
-                <?=$item['link']?>
-            </td>
+    <table>
+        <?php foreach($items[$i] as $content): ?>
 
-        </tr>
+            <tr>
 
-    <?php endforeach; ?>
-</table>
+                <td>
+                    <?=$content['title']?>
+                </td>
+
+                <td>
+                    <?=$content['link']?>
+                </td>
+
+            </tr>
+
+        <?php endforeach; ?>
+    </table>
+
+<?php } ?>
 
 <!--how to get at namespace data?
 http://www.sitepoint.com/simplexml-and-namespaces/
