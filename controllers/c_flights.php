@@ -82,16 +82,32 @@ class flights_controller extends base_controller {
 
             # Get deal list from kayak.com's rss feed
             # Reference: http://www.kayak.com/labs/rss/
-            $results = Utils::curl('http://www.kayak.com/h/rss/buzz?'.$url_string);
+            $results = Array();
+            $get_xml = Utils::curl('http://www.kayak.com/h/rss/buzz?'.$url_string);
         
-            # Put results into array
-            $results = Utils::xml_to_array($results);
+            # Put data into results array
+            # Reference: https://gist.github.com/susanBuck/7867878
+            $data = simplexml_load_string($get_xml);   
+    
+            foreach ($data->channel->item as $item) {
+            
+                # Namespaced data
+                $ns_data  = (Array)$item->children('http://www.kayak.com/h/rss/buzzextension');       
+                
+                # Regular data
+                $reg_data = (Array)$item;
+                
+                # Merge together 
+                $all_data = array_merge($ns_data,$reg_data);
+                
+                # Add to results
+                array_push($results, $all_data);
+            }
 
             # Get deal list from results; if list contains values add results to items & description arrays
-            if (isset($results['channel']['item'])) {
-                $item = $results['channel']['item'];
-                $items[] = $item;
+            if ($results) {
                 $descriptions[] = $description;
+                $items[] = $results;
             }
 
         }

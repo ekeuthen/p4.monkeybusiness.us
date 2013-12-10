@@ -5,16 +5,37 @@
     <h2 id="description"><?php echo $descriptions[$i]; ?></h2>
 
     <table>
+
+        <tr id="header">
+            <td>Destination</td>
+            <td>Price ($)</td>
+            <td>Airline</td>
+            <td>Depart</td>
+            <td>Return</td>
+        </tr>
+
         <?php foreach($items[$i] as $content): ?>
 
             <tr>
 
                 <td>
-                    <?=$content['title']?>
+                    <?=$content['destLocation']?>
                 </td>
 
                 <td>
-                    <?=$content['link']?>
+                    <a href=<?=$content['link']?>><?=$content['price']?></a>
+                </td>
+
+                <td>
+                    <?=$content['airline']?>
+                </td>
+
+                <td>
+                    <?=$content['departDate']?>
+                </td>
+
+                <td>
+                    <?=$content['returnDate']?>
                 </td>
 
             </tr>
