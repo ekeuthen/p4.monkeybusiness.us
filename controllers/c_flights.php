@@ -12,8 +12,6 @@ class flights_controller extends base_controller {
 
     public function index() {
 
-        echo "HELLO FROM FLIGHTS CONTROLLER!!!";
-
         # Setup view
         $this->template->content = View::instance('v_flights_index');
         $this->template->title   = "Deals";
