@@ -104,6 +104,33 @@ class flights_controller extends base_controller {
                 array_push($results, $all_data);
             }
 
+            # Add URL element to array because URL provided by kayak in link element does not have enough data
+            $increment = 0;
+            foreach ($results as $result) {
+                $url = "http://www.kayak.com/flights/";
+                $url .= $result['originCode']."-";
+                $url .= $result['destCode']."/";
+
+                $departDate  = $result['departDate'];
+                $departDate = explode("/", $departDate);
+                if (strlen($departDate[1]) == 1) {
+                    $departDate[1] = "0".$departDate[1];
+                }
+                $url .= $departDate[2]."-".$departDate[0]."-".$departDate[1]."/";
+
+                $returnDate  = $result['returnDate'];
+                $returnDate = explode("/", $returnDate);
+                if (strlen($returnDate[1]) == 1) {
+                    $returnDate[1] = "0".$returnDate[1];
+                }
+                $url .= $returnDate[2]."-".$returnDate[0]."-".$returnDate[1];
+
+                $result["url"] = $url;
+                $results[$increment] = $result;
+
+                $increment ++;
+            }
+
             # Get deal list from results; if list contains values add results to items & description arrays
             if ($results) {
                 $descriptions[] = $description;

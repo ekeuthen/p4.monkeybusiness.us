@@ -23,7 +23,7 @@
                 </td>
 
                 <td>
-                    <a href=<?=$content['link']?>><?=$content['price']?></a>
+                    <a href=<?=$content['url']?> target="_blank" id="link"><?=$content['price']?></a>
                 </td>
 
                 <td>
