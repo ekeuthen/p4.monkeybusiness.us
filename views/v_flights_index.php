@@ -1,3 +1,4 @@
+<?php echo "HELLO FROM FLIGHTS INDEX!!!"; ?>
 <h2><?php echo $user->first_name; ?>'s Flight Deals</h2>
 
 <?php for ($i=0; $i<count($descriptions); $i++) { ?>
