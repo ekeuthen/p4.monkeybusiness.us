@@ -23,8 +23,8 @@ class flights_controller extends base_controller {
         $preferenceList = DB::instance(DB_NAME)->select_rows($q);
 
         # Create two empty arrays to be populated for each preference
-        $descriptions = [];
-        $items = [];
+        $descriptions = array();
+        $items = array();
 
         foreach($preferenceList as $preference) {
 
