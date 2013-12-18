@@ -146,7 +146,18 @@ class users_controller extends base_controller {
         echo $this->template;
     }
 
-    public function p_preferences() {
+    public function p_preferences_delete() {
+
+        # Delete trip idea from database
+        $condition = "WHERE preference_id = ".$_POST['preference_id'];
+        DB::instance(DB_NAME)->delete('preferences', $condition);
+
+        # Reload preferences to show that trip idea has been deleted
+        Router::redirect("/users/preferences");
+    }
+
+    public function save_preferences_via_ajax () {
+      //  echo $_POST['airport'];
 
         # Store additional data with the preference
         $_POST['created']  = Time::now();
@@ -177,19 +188,8 @@ class users_controller extends base_controller {
             .$_POST['month'].'", '.$_POST['year'].', "'.$_POST['region'].'", '.$_POST['max_price'].')';
         DB::instance(DB_NAME)->select_rows($sql);
 
-        # Send user back to preferences.
-        Router::redirect("/users/preferences");
+        echo "success";
 
-    }
-
-    public function p_preferences_delete() {
-
-        # Delete trip idea from database
-        $condition = "WHERE preference_id = ".$_POST['preference_id'];
-        DB::instance(DB_NAME)->delete('preferences', $condition);
-
-        # Reload preferences to show that trip idea has been deleted
-        Router::redirect("/users/preferences");
     }
 
     public function logout() {

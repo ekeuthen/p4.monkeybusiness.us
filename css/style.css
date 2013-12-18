@@ -81,3 +81,7 @@ table {
 #link {
 	text-decoration: underline;
 }
+
+.tableHeaders {
+	border-bottom: black solid 1px;
+}
