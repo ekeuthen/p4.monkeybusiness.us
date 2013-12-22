@@ -10,7 +10,6 @@
             <td><input type="text" name="airport" id="airport" size="20" required=''/></td>
         </tr>
 
-        <!--what to do about expired preferences?-->
         <tr>
             <td>Travel Month / Year:</td>
             <td><select name="month" id="month">
@@ -28,7 +27,6 @@
                 <option value="11">November</option>
                 <option value="12">December</option>
             </select>
-            <!--remove hard coded year -->
             <select name="year" id="year">
                 <option value=""></option>
                 <option value="2013">2013</option>
@@ -64,7 +62,7 @@
 
 <table id="preferenceList">
     <tr>
-        <td class="tableHeaders"></td>
+        <td class="tableHeaders">Delete</td>
         <td class="tableHeaders">Create Date</td>
         <td class="tableHeaders">Home Airport</td>
         <td class="tableHeaders">Travel Dates</td>
@@ -76,7 +74,6 @@
 
         <tr>
             <td>
-                <!--Alllow users to delete a trip idea.-->
                 <input type='submit' value='Delete' class='delete' id='<?=$preference['preference_id']?>'>
             </td>
             <td>

@@ -1,9 +1,26 @@
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover, a:active {
+	color: gray;
+}
+
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	text-align: center;
 	font-weight: bolder;
 	width: 80%;
 	margin: auto;
+}
+
+div a {
+	padding: 25px;
+}
+
+div h2, div h3{
+	display: inline;
 }
 
 footer {
@@ -13,21 +30,23 @@ footer {
 	margin: 5px 5px 0px;
 }
 
-div h2, div h3{
-	display: inline;
+table {
+	text-align: center;
+	width: 80%;
+	margin: auto;
 }
 
-a {
-	text-decoration: none;
-	color: black;
+td {
+	padding: 5px;
+	text-align: left;
 }
 
-div a {
-	padding: 25px;
+#description {
+	color: blue;
 }
 
-a:hover, a:active {
-	color: gray;
+#header {
+	color: red;
 }
 
 #left {
@@ -35,8 +54,24 @@ a:hover, a:active {
 	margin: 10px 0px 0px 0px;
 }
 
+#link {
+	text-decoration: underline;
+}
+
 #right {
 	text-align: right;
+}
+
+.tableHeaders {
+	border-bottom: black solid 1px;
+}
+
+.ui-autocomplete {
+	padding: 0px;
+}
+
+.ui-corner-all {
+	color: blue;
 }
 
 .ui-helper-hidden-accessible {
@@ -49,39 +84,4 @@ a:hover, a:active {
 	text-align: left;
 	border: blue solid 1px;
 	width: 400px;
-}
-
-.ui-corner-all {
-	color: blue;
-}
-
-.ui-autocomplete {
-	padding: 0px;
-}
-
-td {
-	padding: 5px;
-	text-align: left;
-}
-
-table {
-	text-align: center;
-	width: 80%;
-	margin: auto;
-}
-
-#description {
-	color: blue;
-}
-
-#header {
-	color: red;
-}
-
-#link {
-	text-decoration: underline;
-}
-
-.tableHeaders {
-	border-bottom: black solid 1px;
 }

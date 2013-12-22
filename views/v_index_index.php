@@ -4,7 +4,7 @@
 <h5>1) Tell us about your trip ideas (& hopes & dreams).</h5>
 <h5>2) View the deals!</h5>
 
-<img id="bird" src="/uploads/bird.jpg" alt="bird image" height="263" width="245">
+<img id="bird" src="/uploads/bird.jpg" alt="bird image" height="237" width="220">
 <!--http://classroomclipart.com/images/gallery/Clipart/Silhouettes/bird-silhouette-1208-4.jpg-->
 
 <footer>

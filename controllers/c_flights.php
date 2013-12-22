@@ -39,7 +39,7 @@ class flights_controller extends base_controller {
             $url_string = 'code='.$airport;
             $description = 'Flights from '.$airport;
 
-            if (isset($month) && isset($year)) {
+            if ($month != "" && $year != "") {
                 $url_string .= '&tm='.$year.$month;
                 $description .= ' during '.$month.'/'.$year;
             }

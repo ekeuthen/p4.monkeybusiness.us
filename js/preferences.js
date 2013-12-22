@@ -26,17 +26,25 @@ $(function() {
 
     function displayNewRow(msg) {
         var result = $.parseJSON(msg);
-        $('#preferenceList').append(
+        var tableHtml = 
             "<tr>"+
                 "<td>"+
-                    "<input type='submit' value='Delete' class='delete'>"+
+                    "<button class='delete' id='"+result.preference_id+"'>Delete</button>"+
                 "</td>"+
                 "<td>"+result.created+"</td>"+
                 "<td>"+result.airport+"</td>"+
                 "<td>"+result.year+"</td>"+
                 "<td>"+result.region+"</td>"+
                 "<td>"+result.max_price+"</td>"+
-            "</tr>");
+            "</tr>";
+        // each delete button gets its own anonymous click listener
+        // as jQuery does not detect newly created elements on the fly 
+        // without the live() method
+        var test = $(tableHtml).find('button').click(function () {
+                // delete row using ajax
+                deletePreferencesviaAjax(result.preference_id);
+            }).end();
+        $("#preferenceList tr:last").before(test);
     }
 
     function clearValuesEntered() {
@@ -47,7 +55,7 @@ $(function() {
         $('#max_price').val("");
     }
 
-    $(".delete").click(function() {
+    $(".delete").on("click", function() {
         var preference = this.id;
         deletePreferencesviaAjax(preference);
     });
@@ -57,19 +65,18 @@ $(function() {
             type: 'POST',
             url: '/users/p_preferences_delete',
             data: {
-                //preference_id: $('#preference_id').val()
                 preference_id: preference
                 },
             cache: false
         }).done(function(msg){
-            deleteRow();
+            deleteRow(msg);
         }).fail(function(msg){
             alert('Monkey business is out of business! Please resubmit trip idea.');
         }); // end ajax setup
     }
 
-    function deleteRow() {
-        $('#preference_id').parent().parent().remove();
+    function deleteRow(msg) {
+        $("#"+msg).parent().parent().remove();
     }
 
 }); 

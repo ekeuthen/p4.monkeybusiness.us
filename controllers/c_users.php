@@ -32,7 +32,7 @@ class users_controller extends base_controller {
             Router::redirect("/users/signup/error");
         }
 
-        #If  email is not in database, create account and log in user
+        # If  email is not in database, create account and log in user
         else {
             # More data we want stored with the user
             $_POST['created']  = Time::now();
@@ -150,9 +150,14 @@ class users_controller extends base_controller {
 
         # Delete trip idea from database
         $condition = "WHERE preference_id = ".$_POST['preference_id'];
-        DB::instance(DB_NAME)->delete('preferences', $condition);
+        $result = DB::instance(DB_NAME)->delete('preferences', $condition);
 
-        echo "success!";
+        # If something was deleted, return preference_id of row deleted
+        if ($result == 1) {
+            echo $_POST['preference_id'];
+        } else {
+            echo "failed to delete";
+        }
     }
 
     public function save_preferences_via_ajax () {
