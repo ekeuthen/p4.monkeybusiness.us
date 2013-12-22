@@ -58,7 +58,7 @@
 
     <input type='button' value='Save' id="save"></br>
 
-</div>
+</div><br/>
 
 <h3>Current trip ideas:</h3>
 
@@ -77,10 +77,7 @@
         <tr>
             <td>
                 <!--Alllow users to delete a trip idea.-->
-                <!--<form method='POST' action='/users/p_preferences_delete'>-->
-                    <input type='submit' value='Delete' id='delete'>
-                    <input type='hidden' name='preference_id' id='preference_id' value='<?=$preference['preference_id']?>'>
-                <!--</form>-->
+                <input type='submit' value='Delete' class='delete' id='<?=$preference['preference_id']?>'>
             </td>
             <td>
                 <?php echo date('F d, Y', $preference['created']); ?>
@@ -89,7 +86,7 @@
                 <?=$preference['airport']?>
             </td>
             <td>
-                <?php if (isset($preference['year'])) echo $preference['month'].'/'.$preference['year'];?>
+                <?php if (($preference['year']) != "") echo $preference['month'].'/'.$preference['year'];?>
             </td>
             <td>
                 <?=$preference['region']?>
@@ -101,4 +98,7 @@
         </tr>
 
     <?php endforeach; ?>
+
+    <!--Section to add new preferences-->
+    <div id='results'></div>
 </table>

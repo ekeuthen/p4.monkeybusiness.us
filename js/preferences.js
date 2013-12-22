@@ -17,15 +17,26 @@ $(function() {
                 },
             cache: false
         }).done(function(msg){
-            displayNewRow();
+            displayNewRow(msg);
             clearValuesEntered();
         }).fail(function(msg){
             alert('Monkey business is out of business! Please resubmit trip idea.');
         }); // end ajax setup
     } 
 
-    function displayNewRow() {
-        alert('max price entered:'+$('#max_price').val());
+    function displayNewRow(msg) {
+        var result = $.parseJSON(msg);
+        $('#preferenceList').append(
+            "<tr>"+
+                "<td>"+
+                    "<input type='submit' value='Delete' class='delete'>"+
+                "</td>"+
+                "<td>"+result.created+"</td>"+
+                "<td>"+result.airport+"</td>"+
+                "<td>"+result.year+"</td>"+
+                "<td>"+result.region+"</td>"+
+                "<td>"+result.max_price+"</td>"+
+            "</tr>");
     }
 
     function clearValuesEntered() {
@@ -36,16 +47,18 @@ $(function() {
         $('#max_price').val("");
     }
 
-    $("#delete").click(function() {
-        deletePreferencesviaAjax();
+    $(".delete").click(function() {
+        var preference = this.id;
+        deletePreferencesviaAjax(preference);
     });
 
-    function deletePreferencesviaAjax(){
+    function deletePreferencesviaAjax(preference){
         $.ajax({
             type: 'POST',
             url: '/users/p_preferences_delete',
             data: {
-                preference_id: $('#preference_id').val()
+                //preference_id: $('#preference_id').val()
+                preference_id: preference
                 },
             cache: false
         }).done(function(msg){
@@ -56,7 +69,6 @@ $(function() {
     }
 
     function deleteRow() {
-        alert('preference_id:'+$('#preference_id').val());
         $('#preference_id').parent().parent().remove();
     }
 

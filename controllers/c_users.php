@@ -168,7 +168,7 @@ class users_controller extends base_controller {
         }
 
         if ($_POST['year'] == '') {
-            $_POST['year'] = 'NULL';
+            $_POST['year'] = NULL;
         }
 
         if ($_POST['region'] == '') {
@@ -176,18 +176,27 @@ class users_controller extends base_controller {
         }
 
         if ($_POST['max_price'] == '') {
-            $_POST['max_price'] = 'NULL';
+            $_POST['max_price'] = NULL;
         }
 
         # Insert this prefrence into the database
-        # (Using SQL instead of core framework's built in functions to allow insertion of NULL values)
-        $sql = 'INSERT INTO preferences (user_id, created, modified, airport, month, year, region, max_price) 
-            VALUES ('.$_POST['user_id'].', '.$_POST['created'].', '.$_POST['modified'].', "'.$_POST['airport'].'", "'
-            .$_POST['month'].'", '.$_POST['year'].', "'.$_POST['region'].'", '.$_POST['max_price'].')';
-        DB::instance(DB_NAME)->select_rows($sql);
+        $preference_id = DB::instance(DB_NAME)->insert('preferences', $_POST);
 
-        # Convert POST array to json, return json
-        $json = json_encode($_POST);
+        # Retrieve preference stored in database
+        $sql = 'SELECT * FROM preferences WHERE preference_id ='.$preference_id;
+        $results = DB::instance(DB_NAME)->select_rows($sql);
+        $record = $results[0];
+
+        # Convert unix timestamp to the readable datetime format
+        $record['created'] = date('F d, Y', $record['created']);
+
+        # Convert month and year to month / year string
+        if($record['year'] != "") {
+            $record['year'] = $record['month']."/".$record['year'];
+        }
+
+        # Convert results array to json, return json
+        $json = json_encode($record);
         echo $json;
 
     }   
