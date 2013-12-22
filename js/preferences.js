@@ -1,7 +1,29 @@
 $(function() {  
 
     $("#save").click(function() {
-        savePreferencesviaAjax();
+        var valid = true,
+        errorMessage = "";
+
+        if ($('#airport').val() == '') {
+           errorMessage  = "Please select a home airport. \n";
+           valid = false;
+        }
+
+        if ($('#airport').val().length > 3) {
+           errorMessage  = "Please select a three character airport code. \n";
+           valid = false;
+        }
+
+        if(!$.isNumeric($('#max_price').val())) {
+            errorMessage  = "Please enter a numeric maxium price. \n";
+            valid = false;
+        }
+
+        if( !valid && errorMessage.length > 0){
+           alert(errorMessage);
+        } else {
+            savePreferencesviaAjax();
+        }
     });
 
     function savePreferencesviaAjax(){
