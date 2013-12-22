@@ -30,4 +30,5 @@ FEATURES
 JAVASCRIPT USES
 * autocomplete for home airport field
 * ajax call to http://airportcode.riobard.com web service (airport database)
-* autocomplete to submit trip idea
+* ajax call to submit trip idea
+* ajax call to delete trip idea

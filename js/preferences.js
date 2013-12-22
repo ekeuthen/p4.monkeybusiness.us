@@ -4,7 +4,7 @@ $(function() {
         var valid = true,
         errorMessage = "";
 
-        if ($('#airport').val() == '') {
+        if ($('#airport').val() === '') {
            errorMessage  = "Please select a home airport. \n";
            valid = false;
         }
@@ -14,7 +14,7 @@ $(function() {
            valid = false;
         }
 
-        if(!$.isNumeric($('#max_price').val())) {
+        if(($('#max_price').val() !== '') && !$.isNumeric($('#max_price').val())) {
             errorMessage  = "Please enter a numeric maxium price. \n";
             valid = false;
         }

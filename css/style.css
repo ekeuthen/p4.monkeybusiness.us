@@ -41,25 +41,25 @@ td {
 	text-align: left;
 }
 
-#description {
-	color: blue;
-}
-
-#header {
-	color: red;
-}
-
 #left {
 	text-align: left;
 	margin: 10px 0px 0px 0px;
 }
 
-#link {
-	text-decoration: underline;
-}
-
 #right {
 	text-align: right;
+}
+
+.description {
+	color: blue;
+}
+
+.header {
+	color: red;
+}
+
+.link {
+	text-decoration: underline;
 }
 
 .tableHeaders {

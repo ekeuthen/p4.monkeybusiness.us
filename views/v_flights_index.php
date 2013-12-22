@@ -2,11 +2,11 @@
 
 <?php for ($i=0; $i<count($descriptions); $i++) { ?>
 
-    <h2 id="description"><?php echo $descriptions[$i]; ?></h2>
+    <h2 class="description"><?php echo $descriptions[$i]; ?></h2>
 
     <table>
 
-        <tr id="header">
+        <tr class="header">
             <td>Destination</td>
             <td>Price ($)</td>
             <td>Airline</td>
@@ -23,7 +23,7 @@
                 </td>
 
                 <td>
-                    <a href=<?=$content['url']?> target="_blank" id="link"><?=$content['price']?></a>
+                    <a href=<?=$content['url']?> target="_blank" class="link"><?=$content['price']?></a>
                 </td>
 
                 <td>

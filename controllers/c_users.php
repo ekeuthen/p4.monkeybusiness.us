@@ -134,7 +134,7 @@ class users_controller extends base_controller {
         $this->template->title   = "Preferences";
 
         # Query
-        $q = 'SELECT * FROM preferences WHERE preferences.user_id = '.$this->user->user_id;
+        $q = 'SELECT * FROM preferences WHERE preferences.user_id = '.$this->user->user_id.' ORDER BY preferences.created ASC';
 
         # Run the query, store the results in the variable $preferenceList
         $preferenceList = DB::instance(DB_NAME)->select_rows($q);

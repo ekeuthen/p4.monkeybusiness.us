@@ -83,7 +83,7 @@ class flights_controller extends base_controller {
             # Get deal list from kayak.com's rss feed
             # Reference: http://www.kayak.com/labs/rss/
             $results = Array();
-            $get_xml = Utils::curl('http://www.kayak.com/h/rss/buzz?'.$url_string);
+            $get_xml = Utils::curl('http://www.kayak.com/h/rss/buzz?'.$url_string.'&sort=price');
         
             # Put data into results array
             # Reference: https://gist.github.com/susanBuck/7867878
